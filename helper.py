@@ -35,14 +35,27 @@ def initialize_GRASS_notebook(binary, grassdata, location, mapset):
 def show(raster):
     from IPython.display import Image
     import grass.script as gs
+    region = gs.region()
     gs.run_command('d.erase')
-    gs.run_command('d.rast', map=raster)
+    gs.use_temp_region()
+    gs.run_command('g.region', align='ortho', n=region['n'], s=region['s'], e=region['e'], w=region['w'])
+    gs.run_command('d.rast', map='ortho')
+    gs.run_command('d.rast', map=raster, values=0, flags='i')
+    gs.run_command('d.vect', map='NHDFlowline', where="FCODE >= 46006", color='30:144:255')
+    gs.run_command('d.vect', map='roads', where="FULLNAME is not NULL", color='165:159:159', width=2)
+    gs.run_command('d.barscale', at=[38.0,97.0], flags='n', style='both_ticks', segment=5, color='255:255:255', bgcolor='none')
+    gs.del_temp_region()
     return Image("map.png")
 
 
 def show_interactively(raster, opacity=0.8):
     import grass.script as gs
-    gs.run_command('r.out.gdal', input=raster, output=raster + '_spm.tif', type='Byte')
+    info = gs.raster_info(raster)
+    raster = raster.split('@')[0]
+    gs.mapcalc('{r}_processed = if({r} == 0, null(), int({r}))'.format(r=raster))
+    gs.run_command('r.colors', map=raster + '_processed', raster=raster)
+    gs.run_command('r.out.gdal', input=raster + '_processed', output=raster + '_spm.tif', type='Byte')
+    gs.run_command('g.remove', type='raster', name=raster + '_processed', flags='f')
     subprocess.call(['gdalwarp', '-t_srs', 'EPSG:3857',  raster + '_spm.tif', raster + '_merc.tif', '-overwrite'])
     subprocess.call(['gdal_translate', '-of', 'png', raster + '_merc.tif', raster + '_merc.png'])
     info = subprocess.check_output(['gdalinfo', '-json', '-noct', '-nomd', raster + '_merc.png'], universal_newlines=True)
