@@ -7,9 +7,12 @@ using Python interface. The repository is intended to be used with
 Binder, but the notebook can be used anywhere once the dependencies
 are met.
 
-## GRASS GIS Version
+## GRASS GIS and r.pops.spread versions
 
-This repository is compiling GRASS GIS 7.8.2 when a Binder image is renewed.
+This repository is compiling GRASS GIS 7.8 and downloading latest
+r.pops.spread from GRASS GIS Addons repository
+when the Binder image is renewed
+(after making any change in this repository).
 
 ## Authors
 
