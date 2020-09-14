@@ -5,7 +5,7 @@
 This is a Jupyter Notebook introducing Pest or Pathogen Spread (PoPS) model in GRASS GIS
 using Python interface. The repository is intended to be used with
 Binder, but the notebook can be used anywhere once the dependencies
-are met.
+are met. You will need to download the data and change the path to the data in the notebook.
 
 ## GRASS GIS and r.pops.spread versions
 
