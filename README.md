@@ -1,6 +1,6 @@
 # PoPS Model Introduction in GRASS Using Jupyter Notebook
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ncsu-landscape-dynamics/pops-intro-grass-notebook/master?urlpath=lab/tree/pops-intro-grass-notebook.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ncsu-landscape-dynamics/pops-intro-grass-notebook/main?urlpath=lab/tree/pops-intro-grass-notebook.ipynb)
 
 This is a Jupyter Notebook introducing Pest or Pathogen Spread (PoPS) model in GRASS GIS
 using Python interface. The repository is intended to be used with
