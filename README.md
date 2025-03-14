@@ -9,7 +9,7 @@ are met. You will need to download the data and change the path to the data in t
 
 ## GRASS GIS and r.pops.spread versions
 
-This repository is compiling GRASS GIS 7.8 and downloading latest
+This repository is compiling GRASS GIS 8.4.1 and downloading latest
 r.pops.spread from GRASS GIS Addons repository
 when the Binder image is renewed
 (after making any change in this repository).
